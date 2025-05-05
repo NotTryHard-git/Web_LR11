@@ -1,9 +1,9 @@
 <template>
   <div class="about">
-    <h1>О нашей компании</h1>
-    <p>Мы - команда профессионалов, работающая с 2010 года.</p>
+    <h1>{{ store.welcome }}</h1>
+    <p>{{ store.features[1].title }}</p>
     <div class="team">
-      <div v-for="member in team" :key="member.id" class="card feature-card">
+      <div v-for="member in store.team" :key="member.id" class="card feature-card">
         <h3>{{ member.name }}</h3>
         <p>{{ member.position }}</p>
       </div>
@@ -11,19 +11,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AboutPage',
-  data() {
-    return {
-      team: [
-        { id: 1, name: 'Иван Иванов', position: 'CEO'},
-        { id: 2, name: 'Петр Петров', position: 'CTO' },
-        { id: 3, name: 'Сидор Сидоров', position: 'Дизайнер' }
-      ]
-    }
-  }
-}
+<script setup>
+import { useCounterStore } from '@/store'
+const store = useCounterStore()
 </script>
 
 <style scoped>
